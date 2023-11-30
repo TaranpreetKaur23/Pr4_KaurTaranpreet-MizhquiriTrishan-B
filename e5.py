@@ -6,8 +6,14 @@ ASIXc 1B UF1 PR4
 Programa que realitza la multiplicació, de dos
 nombres sencers,  mitjançant sumes.
 """
-numero= int(input())
-numerosuma=int(input())
-for x in range(numerosuma):
-    for j in range(numero):
-        print(x,j,x+j)
+try:
+    resultat=0
+
+    numero1= int(input("Escriu el primer numero: "))
+    numero2=int(input("Escriu el segon numero: "))
+
+    for i in range(numero2):
+        resultat += numero1
+    print(f"El resultado de sumar {numero2} veces el numero {numero1} és: {resultat}")
+except ValueError:
+    print("No funciona")
