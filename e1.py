@@ -24,4 +24,4 @@ try:
     print(negativo, "numeros son negativos")
     print(Zero, "numeros son zeros")
 except ValueError:
-    print("No funciona CARA ALCACHOFA")
+    print("Pon numeros TOTXO")

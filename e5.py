@@ -14,6 +14,11 @@ try:
 
     for i in range(numero2):
         resultat += numero1
+        if i == numero2-1:
+            print(f"{numero1}=",end="")
+        else:
+            print(f"{numero1}+",end="")
+    print(f"{resultat}")
     print(f"El resultado de sumar {numero2} veces el numero {numero1} és: {resultat}")
 except ValueError:
     print("No funciona")

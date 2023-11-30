@@ -8,14 +8,14 @@ la casella Blanca i és de mida 8x8 sempre ;-)
 
 """
 try:
-    BLANC = "⬜"
-    NEGRE = "⬛"
+    NEGRE = "██"
+    BLANC = "  "
 
     for i in range(8):
         for j in range(8):
             casella = BLANC
             if (i + j) % 2 != 0:
-                casella = NEGRE
+                 casella = NEGRE
             print(casella, end="")
         print()
 except ValueError:
