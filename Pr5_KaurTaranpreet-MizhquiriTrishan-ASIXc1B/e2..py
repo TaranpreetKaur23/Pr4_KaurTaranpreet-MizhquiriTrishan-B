@@ -6,12 +6,19 @@ ASIXc 1B UF1 PR5
 Programa que generi una llista de 100 nombres aleatoris entre 1 i 50. Obtenir la mitja dels
 nombres que es troben a les posicions parelles i la mitja del nombre de les posicions senars.
 """
-import random
-limitInferior = 0
-limitSuperior = 50
+try:
 
-numeros = int(random.randint(limitInferior, limitSuperior))
-    for x in range(100):
-     print(numeros, end=", ")
-     numeros_pares = [num for num in x if num % 2 == 0]
-     print(f"{numeros_pares:.2f}")
+    import random
+
+    numeros = [random.randint(0, 50) for _ in range (100)]
+    print(numeros, end=", ")
+    print()
+
+    numeros_pares = sum(numeros[::2]) / len(numeros[::2])
+    print(f"La media de los numeros pares es: {numeros_pares:.2f}")
+
+    numeros_impares = sum(numeros[1::2]) / len(numeros[1::2])
+    print(f"La media de los numeros impares es: {numeros_impares:.2f}")
+
+except ValueError:
+    print("No Funciona")
