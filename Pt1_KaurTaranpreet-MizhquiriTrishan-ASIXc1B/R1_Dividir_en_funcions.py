@@ -7,28 +7,29 @@ Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 """
 import random
 
-frase_ordenada = input(" ")
+def obtenir_frase(frase):
+    print(frase)
 
-def obtenir_frase(frase_ordenada):
-    print(frase_ordenada)
-def llegir_frase(frase_ordenada):
-    paraula = frase_ordenada.split()
-    print(paraula)
+def llegir_frase(frase):
+    paraules = frase.split()
+    return paraules
 
-def separar_paraules(paraula):
-    letras = [letter for word in paraula for letter in word]
-    print(letras)
+def separar_paraules(paraules):
+    letras = [letter for word in paraules for letter in word]
+    return letras
 
 def aleatorio_letras(letras):
-    result= ''. join(letras[0] + random.sample(letras[1:], len(letras)-1))
-    print(result)
-def mostrar_frase_desordenada():
-    print()
-#end region
+    shuffled_letras = [letras[0]] + random.sample(letras[1:], len(letras)-1)
+    result = ''.join(shuffled_letras)
+    return result
+
+def mostrar_frase_desordenada(frase_desordenada):
+    print(frase_desordenada)
+
+# Main execution flow
+frase_ordenada = input("Introduce una frase: ")
 obtenir_frase(frase_ordenada)
-llegir_frase(frase_ordenada)
-paraula = frase_ordenada
-separar_paraules(paraula)
-letras=paraula
-aleatorio_letras(letras)
-mostrar_frase_desordenada()
+paraula = llegir_frase(frase_ordenada)
+letras = separar_paraules(paraula)
+frase_desordenada = aleatorio_letras(letras)
+mostrar_frase_desordenada(frase_desordenada)
