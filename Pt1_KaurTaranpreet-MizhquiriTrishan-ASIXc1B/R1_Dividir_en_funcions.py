@@ -5,6 +5,7 @@ arbitràriament, sinó que es planteja com un objectiu parcial, amb entitat prò
 Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 
 """
+import random
 
 frase_ordenada = input(" ")
 
@@ -17,21 +18,17 @@ def llegir_frase(frase_ordenada):
 def separar_paraules(paraula):
     letras = [letter for word in paraula for letter in word]
     print(letras)
-    return letras
 
-"""    
-def fijar_pri_ult():
-def aleatorio_letras():
-
+def aleatorio_letras(letras):
+    result= ''. join(letras[0] + random.sample(letras[1:], len(letras)-1))
+    print(result)
 def mostrar_frase_desordenada():
-"""
+    print()
 #end region
 obtenir_frase(frase_ordenada)
 llegir_frase(frase_ordenada)
 paraula = frase_ordenada
 separar_paraules(paraula)
-"""
-fijar_pri_ult()
-aleatorio_letras()
+letras=paraula
+aleatorio_letras(letras)
 mostrar_frase_desordenada()
-"""

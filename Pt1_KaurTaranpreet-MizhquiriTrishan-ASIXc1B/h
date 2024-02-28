@@ -1,0 +1,37 @@
+"""
+
+
+
+"""
+
+"""
+
+mostrar_frase_desordenada()
+"""
+def obtenir_frase(frase_ordenada):
+    print(frase_ordenada)
+
+def llegir_frase(frase_ordenada):
+    paraula = frase_ordenada.split()
+    print(paraula)
+    return paraula
+
+def separar_paraules(paraula):
+    letras = [letter for word in paraula for letter in word]
+    print(letras)
+    return letras
+
+def fijar_pri_ult(letras_fijas):
+    primera_letra = letras_fijas[0]  # Utiliza letras_fijas en lugar de letras
+    ultima_letra = letras_fijas[-1]  # Última letra
+    return primera_letra + ultima_letra
+
+# Entrada de la frase
+frase_ordenada = input("Introduce una frase: ")
+
+# Llama a las funciones
+obtenir_frase(frase_ordenada)
+paraula = llegir_frase(frase_ordenada)
+letras = separar_paraules(paraula)
+resultado = fijar_pri_ult(letras)
+print("Resultado:", resultado)
