@@ -6,30 +6,40 @@ Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 
 """
 import random
+frase_ordenada = input("Introduce una frase: ")
+def obtenir_frase(frase_ordenada):
+    print(frase_ordenada)
 
-def obtenir_frase(frase):
-    print(frase)
-
-def llegir_frase(frase):
-    paraules = frase.split()
+def llegir_frase(frase_ordenada):
+    paraules = frase_ordenada.split()
     return paraules
 
 def separar_paraules(paraules):
     letras = [letter for word in paraules for letter in word]
     return letras
 
-def aleatorio_letras(letras):
-    shuffled_letras = [letras[0]] + random.sample(letras[1:], len(letras)-1)
-    result = ''.join(shuffled_letras)
-    return result
+def mezclar_palabras(paraules):
+    palabras_mezcladas = []
+    for palabra in paraules:
+        if len(palabra) > 0:
+            inicio = palabra[0]
+            medio = list(palabra[1:-1])
+            random.shuffle(medio)
+            fin = palabra[-1]
+            palabra_mezclada = inicio + ''.join(medio) + fin
+            palabras_mezcladas.append(palabra_mezclada)
+        else:
+            palabras_mezcladas.append(palabra)
+    return palabras_mezcladas
 
-def mostrar_frase_desordenada(frase_desordenada):
+def mostrar_frase_desordenada(palabras_mezcladas):
+    frase_desordenada = ' '.join(palabras_mezcladas)
+    print("\nFrase con letras intermedias desordenadas:")
     print(frase_desordenada)
 
-# Main execution flow
-frase_ordenada = input("Introduce una frase: ")
+# end region
 obtenir_frase(frase_ordenada)
 paraula = llegir_frase(frase_ordenada)
 letras = separar_paraules(paraula)
-frase_desordenada = aleatorio_letras(letras)
+frase_desordenada = mezclar_palabras(paraula)
 mostrar_frase_desordenada(frase_desordenada)
