@@ -6,10 +6,7 @@ Un cop assolits tots aquests objectius parcials, es considera resolt el total.
 
 """
 import random
-frase_ordenada = input("Introduce una frase: ")
-def obtenir_frase(frase_ordenada):
-    print(frase_ordenada)
-
+frase_ordenada = input()
 def llegir_frase(frase_ordenada):
     paraules = frase_ordenada.split()
     return paraules
@@ -21,7 +18,7 @@ def separar_paraules(paraules):
 def mezclar_palabras(paraules):
     palabras_mezcladas = []
     for palabra in paraules:
-        if len(palabra) > 0:
+        if len(palabra) > 3:
             inicio = palabra[0]
             medio = list(palabra[1:-1])
             random.shuffle(medio)
@@ -34,11 +31,10 @@ def mezclar_palabras(paraules):
 
 def mostrar_frase_desordenada(palabras_mezcladas):
     frase_desordenada = ' '.join(palabras_mezcladas)
-    print("\nFrase con letras intermedias desordenadas:")
+    print("Frase desordenada:")
     print(frase_desordenada)
 
 # end region
-obtenir_frase(frase_ordenada)
 paraula = llegir_frase(frase_ordenada)
 letras = separar_paraules(paraula)
 frase_desordenada = mezclar_palabras(paraula)
