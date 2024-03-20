@@ -11,7 +11,7 @@ limitInferior = 0
 limitSuperior = 50
 
 numeros = int(random.randint(limitInferior, limitSuperior))
-    for x in range(100):
-     print(numeros, end=", ")
-     numeros_pares = [num for num in x if num % 2 == 0]
-     print(f"{numeros_pares:.2f}")
+for x in range(100):
+    print(numeros, end=", ")
+    numeros_pares = [num for num in x if num % 2 == 0]
+    print(f"{numeros_pares:.2f}")
