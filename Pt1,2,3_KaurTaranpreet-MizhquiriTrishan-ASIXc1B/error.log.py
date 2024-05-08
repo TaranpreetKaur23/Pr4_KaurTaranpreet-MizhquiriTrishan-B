@@ -1,8 +1,21 @@
+import logging
+
 
 def guardar_log(log_linia):
     ruta_log = "log/boges.txt"
     with open(ruta_log, "at") as log:
         log.write(log_linia + "\n")
+def Error_log():
+    with open("paraules_boges.txt", "at") as log:
+        f_error.write(message+"\n")
+        logging.basicConfig(level=logging)
+def tipo_error():
+    error_log =("logging.INFO")
+    "info message"
+    logging.DEBUG
+    logging.WARNING
+    logging.ERROR
+    logging.CRITICAL
 def procesar_log(linea):
     patron_log_apache = re.compile(r'(\S+) (\S+) (\S+) \[([\w:/]+\s[+\-]\d{4})\] "(\S+) (\S+) (\S+)" (\d+)')
     patron_log_simple = re.compile(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}) - (\S+) - (\S+) - (.*)')
