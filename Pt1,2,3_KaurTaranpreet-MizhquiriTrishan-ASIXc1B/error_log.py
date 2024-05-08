@@ -1,3 +1,12 @@
+"""
+Trishan Mizhquiri
+Taranpreet Kaur
+08/05/2024
+02/05/2024
+ASIXc1B UF3 A1 Pt1
+error_log.py
+en este fitxer posem les funcions per a la gestió dels errors que es puguin produir en el programa.
+"""
 import os
 import logging
 
