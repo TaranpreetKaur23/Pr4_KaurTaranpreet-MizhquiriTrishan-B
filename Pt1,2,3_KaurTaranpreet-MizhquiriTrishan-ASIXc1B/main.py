@@ -1,6 +1,6 @@
 from R3_1 import llegir_frase, separar_paraules, mezclar_palabras, arxiu_entrada, arxiu_sortida
 from R3_2 import crear_directory
-from error.log import error_log, tipos_error
+from error_log import error_log
 
 
 def main():
@@ -22,7 +22,6 @@ if __name__ == "__main__":
 
 def main_error():
     error_log()
-    tipos_error()
 
 
 main_error()

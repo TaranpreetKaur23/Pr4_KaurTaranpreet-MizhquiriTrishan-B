@@ -1,50 +1,30 @@
+import os
 import logging
 
+# Configuración del registro
+logging.basicConfig(filename="log/boges.log", format='%(asctime)s - %(levelname)s - %(message)s', level=logging.ERROR)
 
-def guardar_log(log_linia):
-    ruta_log = "log/boges.txt"
-    with open(ruta_log, "at") as log:
-        log.write(log_linia + "\n")
-def Error_log():
-    with open("paraules_boges.txt", "at") as log:
-        f_error.write(message+"\n")
-        logging.basicConfig(level=logging)
-def tipo_error():
-    error_log =("logging.INFO")
-    "info message"
-    logging.DEBUG
-    logging.WARNING
-    logging.ERROR
-    logging.CRITICAL
-def procesar_log(linea):
-    patron_log_apache = re.compile(r'(\S+) (\S+) (\S+) \[([\w:/]+\s[+\-]\d{4})\] "(\S+) (\S+) (\S+)" (\d+)')
-    patron_log_simple = re.compile(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}) - (\S+) - (\S+) - (.*)')
+def error_log():
+    directorio_inicial = input("Introduce la ruta del directorio inicial: ")
+    fecha = obtener_fecha_actual()
+    tiempo_transcurrido = obtener_tiempo_transcurrido()
 
-    if patron_log_apache.match(linea):
-        print("Log de Apache detectado:")
-        # Aquí puedes incluir el código para procesar el log de Apache
-    elif patron_log_simple.match(linea):
-        print("Log simple detectado:")
-        # Aquí puedes incluir el código para procesar el log simple
-    else:
-        print("Error: formato de log no reconocido")
+    logging.info("info message")  # Este mensaje no se registrará en el archivo
+    logging.debug("debug message")  # Este mensaje no se registrará en el archivo
 
-def ejemplo_apache():
-    log_linea = '127.0.0.1 user-identifier frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 208'
-    procesar_log(log_linea)
+    if not os.path.isdir(directorio_inicial):
+        print("El directorio especificado no existe.")
+        logging.error(f"{fecha} - Error: El directorio especificado no existe. - {tiempo_transcurrido}")
+        return
 
-def ejemplo_simple():
-    log_linea = '2022-04-19 15:10:26,618 - simple_example - DEBUG - debug message'
-    procesar_log(log_linea)
+    if not os.access(directorio_inicial, os.R_OK):
+        print("No tienes permiso para leer el directorio especificado.")
+        logging.error(f"{fecha} - Error: El directorio no tiene permisos para tu usuario. - {tiempo_transcurrido}")
+        return
 
-    log_linea = '2022-04-19 15:10:26,620 - simple_example - INFO - info message'
-    procesar_log(log_linea)
+    logging.warning("warn message")  # Este mensaje se registrará como una advertencia
+    logging.error("error message")  # Este mensaje se registrará como un error
+    logging.critical("critical message") 
 
-    log_linea = '2022-04-19 15:10:26,695 - simple_example - WARNING - warn message'
-    procesar_log(log_linea)
-
-    log_linea = '2022-04-19 15:10:26,697 - simple_example - ERROR - error message'
-    procesar_log(log_linea)
-
-    log_linea = '2022-04-19 15:10:26,773 - simple_example - CRITICAL - critical message'
-    procesar_log(log_linea)
+    print("\nRecorrido del árbol de directorios:")
+    recorrer_arbol_directorios(directorio_inicial)
