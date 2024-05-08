@@ -1,16 +1,4 @@
-import crazy_words as cw
-import data_source as ds
+from R3 import main
 
-
-def crazyWord():
-    cw.crazy_words()
-
-
-crazyWord()
-
-
-def dataSource():
-    ds.getDataFromKeyboard()
-
-
-dataSource()
+if __name__ == "__main__":
+    main()
