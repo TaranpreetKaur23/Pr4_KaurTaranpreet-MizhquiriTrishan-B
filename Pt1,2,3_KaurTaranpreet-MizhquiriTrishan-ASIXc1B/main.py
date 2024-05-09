@@ -7,30 +7,23 @@ ASIXc1B UF3 A1 Pt1
 main.py
 importem els tres fitxers per que es puguin executar les funcions que hi ha en ells.
 """
-from R3_1 import llegir_frase, separar_paraules, mezclar_palabras, arxiu_entrada, arxiu_sortida
-from R3_2 import crear_directory
-from error_log import error_log
-
+from R3_1 import *
+from R3_2 import *
+from error_log import *
+import os
 
 def main():
     crear_directory()
-    main()
+
+
+main()
 
 
 def main1():
-    frase_ordenada = arxiu_entrada()
-    paraula = llegir_frase(frase_ordenada)
-    separar_paraules(paraula)
-    palabras_desordenadas = mezclar_palabras(paraula)
-    arxiu_sortida(palabras_desordenadas)
-
-
-if __name__ == "__main__":
-    main1()
-
-
-def main_error():
-    error_log()
-
-
-main_error()
+    ruta = input()
+    contenido = leer_archivo(ruta)
+    if contenido:
+        contenido_desordenado = desordenar_palabras(contenido)
+        nombre_archivo = os.path.join("sortida", os.path.basename(ruta).split('.')[0] + "_boges.txt")
+        escribir_archivo_sortida(contenido_desordenado, nombre_archivo)
+main1()

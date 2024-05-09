@@ -4,43 +4,47 @@ Taranpreet Kaur
 02/05/2024
 ASIXc1B UF3 A1 Pt1
 R3_1
-abre el arxiu entrada/paraules.txt y envia su contenido a un nuevo archivo  de
-sallida llamado sortida/paraules_boges.txt con las palabras desordenadas.
+abre el arxiu entrada cualquier arxiu txt y envia su contenido a un nuevo archivo  de
+sallida llamado sortida donde debemos colocar los arxius _boges.txt  con las palabras desordenadas.
 """
+import os
 import random
-import logging
+from datetime import datetime
+from error_log import registrar_error
+def leer_archivo(ruta):
+    try:
+        with open(ruta, 'r') as archivo:
+            contenido = archivo.read()
+        return contenido
+    except FileNotFoundError:
+        registrar_error("No se encontró el archivo.")
+    except Exception as e:
+        registrar_error(f"Error: {e}")
 
-def llegir_frase(frase_ordenada):
+def escribir_archivo_sortida(contenido_desordenado, nombre_archivo):
+    try:
+        with open(nombre_archivo, "wt") as fs:
+            for palabra in contenido_desordenado:
+                fs.write(palabra + "\n")
+    except Exception as e:
+        registrar_error(f"No se pudo escribir en el archivo de salida: {e}")
 
-    return frase_ordenada.split()
-
-def separar_paraules(paraula):
-
-    return paraula
-
-def mezclar_palabras(paraula):
-
+def desordenar_palabras(contenido):
+    palabras = contenido.split()
     palabras_desordenadas = []
-    for palabra in paraula:
+    for palabra in palabras:
         if len(palabra) <= 2:
             palabras_desordenadas.append(palabra)
         else:
-            middle_part = list(palabra[1:-1])
-            random.shuffle(middle_part)
-            palabra_desordenada = palabra[0] + ''.join(middle_part) + palabra[-1]
+            primera_letra = palabra[0]
+            ultima_letra = palabra[-1]
+            letras_intermedias = list(palabra[1:-1])
+            random.shuffle(letras_intermedias)
+            palabra_desordenada = primera_letra + ''.join(letras_intermedias) + ultima_letra
             palabras_desordenadas.append(palabra_desordenada)
     return palabras_desordenadas
 
-def arxiu_entrada():
-
-    ruta = "entrada/paraules.txt"
-    with open(ruta, "rt") as fitxer_entrada:
-        paraules = fitxer_entrada.read()
-    return paraules
-
-def arxiu_sortida(frase_desordenada):
-
-    ruta_sortida = "sortida/paraules_boges.txt"
-    with open(ruta_sortida, "wt") as fs:
-        for word in frase_desordenada:
-            fs.write(word + "\n")
+def registrar_error(error):
+    timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    with open("log/boges.log", "a") as f:
+        f.write(f"{timestamp} - {error}\n")

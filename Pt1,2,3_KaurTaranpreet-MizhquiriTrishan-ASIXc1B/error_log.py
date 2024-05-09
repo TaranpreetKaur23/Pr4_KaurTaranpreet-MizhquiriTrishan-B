@@ -1,39 +1,20 @@
-"""
-Trishan Mizhquiri
-Taranpreet Kaur
-08/05/2024
-02/05/2024
-ASIXc1B UF3 A1 Pt1
-error_log.py
-en este fitxer posem les funcions per a la gestió dels errors que es puguin produir en el programa.
-"""
-import os
 import logging
+from datetime import datetime
 
-# Configuración del registro
-logging.basicConfig(filename="log/boges.log", format='%(asctime)s - %(levelname)s - %(message)s', level=logging.ERROR)
+def iniciar_registro():
+    logging.basicConfig(filename='log/boges.log', format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-def error_log():
-    directorio_inicial = input("Introduce la ruta del directorio inicial: ")
-    fecha = obtener_fecha_actual()
-    tiempo_transcurrido = obtener_tiempo_transcurrido()
+def registrar_info(mensaje):
+    logging.info(mensaje)
 
-    logging.info("info message")  # Este mensaje no se registrará en el archivo
-    logging.debug("debug message")  # Este mensaje no se registrará en el archivo
+def registrar_debug(mensaje):
+    logging.debug(mensaje)
 
-    if not os.path.isdir(directorio_inicial):
-        print("El directorio especificado no existe.")
-        logging.error(f"{fecha} - Error: El directorio especificado no existe. - {tiempo_transcurrido}")
-        return
+def registrar_warning(mensaje):
+    logging.warning(mensaje)
 
-    if not os.access(directorio_inicial, os.R_OK):
-        print("No tienes permiso para leer el directorio especificado.")
-        logging.error(f"{fecha} - Error: El directorio no tiene permisos para tu usuario. - {tiempo_transcurrido}")
-        return
+def registrar_error(mensaje):
+    logging.error(mensaje)
 
-    logging.warning("warn message")  # Este mensaje se registrará como una advertencia
-    logging.error("error message")  # Este mensaje se registrará como un error
-    logging.critical("critical message") 
-
-    print("\nRecorrido del árbol de directorios:")
-    recorrer_arbol_directorios(directorio_inicial)
+def registrar_critical(mensaje):
+    logging.critical(mensaje)
